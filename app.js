@@ -10,6 +10,7 @@ app.get('/', function (req, res) {
 });
 
 require('./routes/parasite')(app);
+require('./routes/asteroid')(app);
 
 app
   .post('/square', (req, res) => {

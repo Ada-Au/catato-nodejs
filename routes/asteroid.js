@@ -32,7 +32,9 @@ module.exports = function (app) {
             }
           }
         }
+        str.shift();
       }
+      return arr;
     }
 
     const removeDuplicates = (s) => {
@@ -48,6 +50,7 @@ module.exports = function (app) {
 
       return indices;
     };
+
     const calculate_origin = (arr) => {
       if (arr.length <= 1) return 0;
       var origin;
@@ -79,7 +82,7 @@ module.exports = function (app) {
       if (num >= 10) score += num * 2;
       else if (num >= 7) score += num * 1.5;
       else score += num;
-      if (L == R) return score;
+      if (R == L) return score;
       return calculate_score(asteroid, arr, L + 1, R - 1, score);
     };
 

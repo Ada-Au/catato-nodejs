@@ -76,8 +76,7 @@ module.exports = function (app) {
       }
       if (L < mid) {
         if (L == 0) {
-          num += L - startPoint(asteroid, arr) + 2;
-          console.log('start:', startPoint(asteroid, arr));
+          num += arr[L][0] - startPoint(asteroid, arr) + 1;
         } else num += arr[L][0] - arr[L - 1][0];
       }
       console.log(arr[R][1], num);
@@ -95,7 +94,7 @@ module.exports = function (app) {
       var arr = palindrome(simple);
       console.log(arr);
       var origin = calculate_origin(arr);
-      var score = calculate_score(asteroid, arr, 0, arr.length - 1, 1);
+      var score = calculate_score(asteroid, arr, 0, arr.length - 1, 0);
       result.push({ input: asteroid, score: score, origin: origin });
     }
     res.json(result);

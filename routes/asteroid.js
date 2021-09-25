@@ -1,7 +1,6 @@
 module.exports = function (app) {
   app.post('/asteroid', function (req, res) {
     const input = req.body.test_cases;
-    console.log(input);
     const asteroids_size = input.length;
 
     var score;
@@ -10,7 +9,6 @@ module.exports = function (app) {
     function binary_search_origin(asteroid, L, R) {
       if (R >= 1) {
         let mid = 1 + Math.floor((asteroid.length - 1) / 2);
-        // console.log(mid);
         if (asteroid[mid] == asteroid[L]) {
           return L + 1;
         } else {

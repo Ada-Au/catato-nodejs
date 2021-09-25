@@ -1,9 +1,7 @@
 module.exports = function (app) {
   app.post('/parasite', function (req, res) {
-    // console.log(req);
     let data = req.body;
 
-    console.log(data, '\n');
     var result = [];
 
     data.map((room) => {
@@ -18,10 +16,6 @@ module.exports = function (app) {
           roomResult.p1[person] = -1;
         }
       });
-
-      console.log(room.room);
-      roomGrid.map((row) => console.log(row));
-      console.log(room.interestedIndividuals);
 
       let infected = 0;
       let infectPpl = [];
@@ -41,7 +35,7 @@ module.exports = function (app) {
             }
           }
         }
-        console.log(infectPpl);
+
         infectPpl.map((person) => {
           if (person[0] - 1 >= 0 && roomGrid[person[0] - 1][person[1]] == 1) {
             roomGrid[person[0] - 1][person[1]] = 3;
@@ -60,7 +54,6 @@ module.exports = function (app) {
             infected++;
           }
         });
-        roomGrid.map((row) => console.log(row));
         tick++;
 
         room.interestedIndividuals.map((person) => {
@@ -82,7 +75,6 @@ module.exports = function (app) {
 
       grid = JSON.parse(JSON.stringify(room.grid));
       tick = 0;
-      console.log();
 
       do {
         infected = 0;
@@ -130,7 +122,6 @@ module.exports = function (app) {
             infected++;
           }
         });
-        grid.map((row) => console.log(row));
         tick++;
       } while (infected > 0);
 
@@ -218,9 +209,6 @@ module.exports = function (app) {
               }
             });
           } while (infected > 0);
-
-          roomGrid.map((row) => console.log(row));
-          console.log();
         } while (roomGrid.findIndex((row) => row.includes(1)) != -1);
 
       roomResult.p4 = energy;

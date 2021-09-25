@@ -4,7 +4,7 @@ module.exports = function (app) {
     // const input = require("./asteroid_data");
 
     const input = req.body.input;
-    console.log(input);
+    res.send(input);
     const asteroids_size = input.length;
 
     var score;

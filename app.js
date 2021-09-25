@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
 
 require('./routes/tictactoe')(app);
 require('./routes/parasite')(app);
+require('./routes/asteroid1')(app);
 require('./routes/asteroid')(app);
 
 app

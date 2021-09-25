@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+require('./routes/tic-tac-toe')(app);
 require('./routes/parasite')(app);
 require('./routes/asteroid')(app);
 

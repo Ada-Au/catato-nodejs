@@ -1,5 +1,5 @@
 module.exports = function (app) {
-  app.post('/asteroid2', function (req, res) {
+  app.post('/asteroid', function (req, res) {
     const input = req.body.test_cases;
     const asteroids_size = input.length;
 

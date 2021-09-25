@@ -1,6 +1,7 @@
-const express = require("express");
-const morganBody = require("morgan-body");
-const PORT = process.env.PORT || 3000;
+const express = require('express');
+const morganBody = require('morgan-body');
+const PORT = process.env.PORT || 5000;
+
 
 const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === "production" });

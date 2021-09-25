@@ -37,9 +37,12 @@ module.exports = function (app) {
       return removeDuplicates(asteroid, binary_search_origin(asteroid, 0, asteroid.length), score);
     }
 
+    result = [];
     for (let i = 0; i < asteroids_size; i++) {
       let asteroid = input[i];
+
       origin = binary_search_origin(asteroid, 0, asteroid.length - 1);
+      score = removeDuplicates(asteroid, origin, 0);
       result.push({ input: asteroid, score: score, origin: origin });
     }
     res.json(result);

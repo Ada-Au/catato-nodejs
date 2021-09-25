@@ -1,4 +1,4 @@
-router.post("/asteroid", function (req, res) {
+function asteroid(req, res) {
   // res.send("Hello asteroid!");
   // const input = require("./asteroid_data");
 
@@ -66,6 +66,6 @@ router.post("/asteroid", function (req, res) {
   }
   console.log(JSON.stringify(result));
   res.json(JSON.stringify(result));
-});
+}
 
-module.exports = router;
+module.exports = asteroid;

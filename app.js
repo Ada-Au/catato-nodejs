@@ -5,10 +5,6 @@ const PORT = 5000;
 const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
 app
   .post('/square', (req, res) => {
     const output = parseInt(req.body.input) ** 2;

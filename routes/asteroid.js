@@ -1,6 +1,6 @@
 module.exports = function (app) {
   app.post("/asteroid", function (req, res) {
-    res.send("Hello asteroid!");
+    // res.send("Hello asteroid!");
     // const input = require("./asteroid_data");
 
     const input = req.body.input;

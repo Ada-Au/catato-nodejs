@@ -58,10 +58,8 @@ module.exports = function (app) {
 
       simplifiedString = '';
       asteroidArray = removeDuplicates(asteroid);
-      console.log(asteroidArray);
       asteroidArray.map((size) => (simplifiedString += size[1]));
       palin = palindrome(simplifiedString);
-      console.log(palin);
 
       let score = 0,
         origin = 1;
@@ -79,7 +77,6 @@ module.exports = function (app) {
         } else {
           score += sizeLength;
         }
-        console.log(score);
       }
 
       for (let i = 0; i < palin[0]; i++) {

@@ -5,6 +5,12 @@ const PORT = process.env.PORT || 3000;
 const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+require('./routes/tictactoe')(app);
+require('./routes/parasite')(app);
 require('./routes/asteroid')(app);
 
 app

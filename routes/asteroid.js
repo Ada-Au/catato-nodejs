@@ -31,11 +31,7 @@ module.exports = function (app) {
               arr = Map.slice(i, i + count);
             }
           }
-        }
-        str.shift();
-      }
-      return arr;
-    }
+
 
     const removeDuplicates = (s) => {
       let n = s.length;

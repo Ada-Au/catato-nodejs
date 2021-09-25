@@ -22,6 +22,10 @@ module.exports = function (app) {
       let tick = 0;
 
       do {
+        while (interestedIndividuals.indexOf(-1) != -1) {
+          interestedIndividuals.pop(interestedIndividuals.indexOf(-1));
+        }
+
         room.interestedIndividuals.map((person) => {
           person.split(',');
         });

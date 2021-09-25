@@ -143,9 +143,8 @@ module.exports = function (app) {
       });
 
       let energy = 0;
-      if (p)
+      if (roomGrid.findIndex((row) => row.includes(1)) != -1)
         do {
-          infected = 0;
           infectPpl = [];
           for (let i = 0; i < roomGrid.length; i++) {
             for (let j = 0; j < roomGrid[0].length; j++) {
@@ -157,57 +156,50 @@ module.exports = function (app) {
 
           isEnergyUsed = false;
           infectPpl.map((person) => {
-            if (person[0] - 1 >= 0) {
-              if (roomGrid[person[0] - 1][person[1]] == 0 && roomGrid[person[0] - 1][person[1]] == 2) {
-                isEnergyUsed = true;
-                roomGrid[person[0] - 1][person[1]] = 3;
-              }
-              if (roomGrid[person[0] - 1][person[1]] == 1) {
-                roomGrid[person[0] - 1][person[1]] = 3;
-              }
+            if (
+              person[0] - 1 >= 0 &&
+              (roomGrid[person[0] - 1][person[1]] == 0 || roomGrid[person[0] - 1][person[1]] == 2)
+            ) {
+              isEnergyUsed = true;
+              roomGrid[person[0] - 1][person[1]] = 3;
             }
-            if (person[1] - 1 >= 0) {
-              if (roomGrid[person[0]][person[1] - 1] == 0 && roomGrid[person[0]][person[1] - 1] == 2) {
-                isEnergyUsed = true;
-                roomGrid[person[0]][person[1] - 1] = 3;
-              }
-              if (roomGrid[person[0]][person[1] - 1] == 1) {
-                roomGrid[person[0]][person[1] - 1] = 3;
-              }
+            if (
+              person[1] - 1 >= 0 &&
+              (roomGrid[person[0]][person[1] - 1] == 0 || roomGrid[person[0]][person[1] - 1] == 2)
+            ) {
+              isEnergyUsed = true;
+              roomGrid[person[0]][person[1] - 1] = 3;
             }
-            if (person[0] + 1 < roomGrid.length && roomGrid[person[0] + 1][person[1]] != 0) {
-              if (roomGrid[person[0] + 1][person[1]] == 0 && roomGrid[person[0] + 1][person[1]] == 2) {
-                isEnergyUsed = true;
-                roomGrid[person[0] + 1][person[1]] = 3;
-              }
-              if (roomGrid[person[0] + 1][person[1]] == 1) {
-                roomGrid[person[0] + 1][person[1]] = 3;
-              }
+            if (
+              person[0] + 1 < roomGrid.length &&
+              (roomGrid[person[0] + 1][person[1]] == 0 || roomGrid[person[0] + 1][person[1]] == 2)
+            ) {
+              isEnergyUsed = true;
+              roomGrid[person[0] + 1][person[1]] = 3;
             }
-            if (person[1] + 1 < roomGrid.length && roomGrid[person[0]][person[1] + 1] != 0) {
+            if (
+              person[1] + 1 < roomGrid.length &&
+              (roomGrid[person[0]][person[1] + 1] == 0 || roomGrid[person[0]][person[1] + 1] == 2)
+            ) {
+              isEnergyUsed = true;
               roomGrid[person[0]][person[1] + 1] = 3;
-              if (roomGrid[person[0]][person[1] + 1] == 0 && roomGrid[person[0]][person[1] + 1] == 2) {
-                isEnergyUsed = true;
-                roomGrid[person[0]][person[1] + 1] = 3;
-              }
-              if (roomGrid[person[0]][person[1] + 1] == 1) {
-                roomGrid[person[0]][person[1] + 1] = 3;
-              }
             }
           });
 
+          if (isEnergyUsed) energy++;
+
           do {
             infected = 0;
-            infectPpl = [];
+            infectPplA = [];
             for (let i = 0; i < roomGrid.length; i++) {
               for (let j = 0; j < roomGrid[0].length; j++) {
                 if (roomGrid[i][j] == 3) {
-                  infectPpl.push([i, j]);
+                  infectPplA.push([i, j]);
                 }
               }
             }
 
-            infectPpl.map((person) => {
+            infectPplA.map((person) => {
               if (person[0] - 1 >= 0 && roomGrid[person[0] - 1][person[1]] == 1) {
                 roomGrid[person[0] - 1][person[1]] = 3;
                 infected++;
@@ -228,9 +220,10 @@ module.exports = function (app) {
           } while (infected > 0);
 
           roomGrid.map((row) => console.log(row));
-        } while (infected > 0);
+          console.log();
+        } while (roomGrid.findIndex((row) => row.includes(1)) != -1);
 
-      roomResult.p4 = tick;
+      roomResult.p4 = energy;
       result.push(roomResult);
     });
     res.json(result);

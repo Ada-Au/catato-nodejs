@@ -71,88 +71,87 @@ module.exports = function (app) {
         }
       });
 
-      let energy = 0;
-      if (roomGrid.findIndex((row) => row.includes(1)) != -1)
-        do {
-          for (let i = 0; i < roomGrid.length; i++) {
-            for (let j = 0; j < roomGrid[0].length; j++) {
-              if (roomGrid[i][j] == 3 || roomGrid[i][j] == 4) {
-                infectPpl.push([i, j]);
-              }
-            }
-          }
+      // let energy = 0;
+      // if (roomGrid.findIndex((row) => row.includes(1)) != -1)
+      //   do {
+      //     for (let i = 0; i < roomGrid.length; i++) {
+      //       for (let j = 0; j < roomGrid[0].length; j++) {
+      //         if (roomGrid[i][j] == 3 || roomGrid[i][j] == 4) {
+      //           infectPpl.push([i, j]);
+      //         }
+      //       }
+      //     }
 
-          isEnergyUsed = false;
-          infectPpl.map((person) => {
-            roomGrid[person[0]][person[1]] = 5;
-            if (
-              person[0] - 1 >= 0 &&
-              (roomGrid[person[0] - 1][person[1]] == 0 || roomGrid[person[0] - 1][person[1]] == 2)
-            ) {
-              isEnergyUsed = true;
-              roomGrid[person[0] - 1][person[1]] = 3;
-            }
-            if (
-              person[1] - 1 >= 0 &&
-              (roomGrid[person[0]][person[1] - 1] == 0 || roomGrid[person[0]][person[1] - 1] == 2)
-            ) {
-              isEnergyUsed = true;
-              roomGrid[person[0]][person[1] - 1] = 3;
-            }
-            if (
-              person[0] + 1 < roomGrid.length &&
-              (roomGrid[person[0] + 1][person[1]] == 0 || roomGrid[person[0] + 1][person[1]] == 2)
-            ) {
-              isEnergyUsed = true;
-              roomGrid[person[0] + 1][person[1]] = 3;
-            }
-            if (
-              person[1] + 1 < roomGrid.length &&
-              (roomGrid[person[0]][person[1] + 1] == 0 || roomGrid[person[0]][person[1] + 1] == 2)
-            ) {
-              isEnergyUsed = true;
-              roomGrid[person[0]][person[1] + 1] = 3;
-            }
-          });
-          if (isEnergyUsed) energy++;
+      //     isEnergyUsed = false;
+      //     infectPpl.map((person) => {
+      //       roomGrid[person[0]][person[1]] = 5;
+      //       if (
+      //         person[0] - 1 >= 0 &&
+      //         (roomGrid[person[0] - 1][person[1]] == 0 || roomGrid[person[0] - 1][person[1]] == 2)
+      //       ) {
+      //         isEnergyUsed = true;
+      //         roomGrid[person[0] - 1][person[1]] = 3;
+      //       }
+      //       if (
+      //         person[1] - 1 >= 0 &&
+      //         (roomGrid[person[0]][person[1] - 1] == 0 || roomGrid[person[0]][person[1] - 1] == 2)
+      //       ) {
+      //         isEnergyUsed = true;
+      //         roomGrid[person[0]][person[1] - 1] = 3;
+      //       }
+      //       if (
+      //         person[0] + 1 < roomGrid.length &&
+      //         (roomGrid[person[0] + 1][person[1]] == 0 || roomGrid[person[0] + 1][person[1]] == 2)
+      //       ) {
+      //         isEnergyUsed = true;
+      //         roomGrid[person[0] + 1][person[1]] = 3;
+      //       }
+      //       if (
+      //         person[1] + 1 < roomGrid.length &&
+      //         (roomGrid[person[0]][person[1] + 1] == 0 || roomGrid[person[0]][person[1] + 1] == 2)
+      //       ) {
+      //         isEnergyUsed = true;
+      //         roomGrid[person[0]][person[1] + 1] = 3;
+      //       }
+      //     });
+      //     if (isEnergyUsed) energy++;
 
-          do {
-            infected = 0;
-            let infectPpl = [];
+      //     do {
+      //       infected = 0;
+      //       let infectPpl = [];
 
-            for (let i = 0; i < roomGrid.length; i++) {
-              for (let j = 0; j < roomGrid[0].length; j++) {
-                if (roomGrid[i][j] == 3) {
-                  infectPpl.push([i, j]);
-                }
-              }
-            }
+      //       for (let i = 0; i < roomGrid.length; i++) {
+      //         for (let j = 0; j < roomGrid[0].length; j++) {
+      //           if (roomGrid[i][j] == 3) {
+      //             infectPpl.push([i, j]);
+      //           }
+      //         }
+      //       }
 
-            infectPpl.map((person) => {
-              roomGrid[person[0]][person[1]] = 5;
-              if (person[0] > 0 && roomGrid[person[0] - 1][person[1]] == 1) {
-                roomGrid[person[0] - 1][person[1]] = 3;
-                infected++;
-              }
-              if (person[1] > 0 && roomGrid[person[0]][person[1] - 1] == 1) {
-                roomGrid[person[0]][person[1] - 1] = 3;
-                infected++;
-              }
-              if (person[0] + 1 < roomGrid.length && roomGrid[person[0] + 1][person[1]] == 1) {
-                roomGrid[person[0] + 1][person[1]] = 3;
-                infected++;
-              }
-              if (person[1] + 1 < roomGrid.length && roomGrid[person[0]][person[1] + 1] == 1) {
-                roomGrid[person[0]][person[1] + 1] = 3;
-                infected++;
-              }
-            });
-          } while (infected > 0);
-        } while (roomGrid.findIndex((row) => row.includes(1)) != -1);
+      //       infectPpl.map((person) => {
+      //         roomGrid[person[0]][person[1]] = 5;
+      //         if (person[0] > 0 && roomGrid[person[0] - 1][person[1]] == 1) {
+      //           roomGrid[person[0] - 1][person[1]] = 3;
+      //           infected++;
+      //         }
+      //         if (person[1] > 0 && roomGrid[person[0]][person[1] - 1] == 1) {
+      //           roomGrid[person[0]][person[1] - 1] = 3;
+      //           infected++;
+      //         }
+      //         if (person[0] + 1 < roomGrid.length && roomGrid[person[0] + 1][person[1]] == 1) {
+      //           roomGrid[person[0] + 1][person[1]] = 3;
+      //           infected++;
+      //         }
+      //         if (person[1] + 1 < roomGrid.length && roomGrid[person[0]][person[1] + 1] == 1) {
+      //           roomGrid[person[0]][person[1] + 1] = 3;
+      //           infected++;
+      //         }
+      //       });
+      //     } while (infected > 0);
+      //   } while (roomGrid.findIndex((row) => row.includes(1)) != -1);
 
-      infectPpl = [];
-      roomResult.p4 = energy;
-      result.push(roomResult);
+      // infectPpl = [];
+      // roomResult.p4 = energy;
 
       tick = 0;
       do {
@@ -212,6 +211,7 @@ module.exports = function (app) {
           roomResult.p3 = -1;
         }
       });
+      result.push(roomResult);
     });
 
     res.json(result);

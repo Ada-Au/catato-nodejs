@@ -130,11 +130,11 @@ module.exports = function (app) {
 
             infectPpl.map((person) => {
               roomGrid[person[0]][person[1]] = 5;
-              if (person[0] - 1 >= 0 && roomGrid[person[0] - 1][person[1]] == 1) {
+              if (person[0] > 0 && roomGrid[person[0] - 1][person[1]] == 1) {
                 roomGrid[person[0] - 1][person[1]] = 3;
                 infected++;
               }
-              if (person[1] - 1 >= 0 && roomGrid[person[0]][person[1] - 1] == 1) {
+              if (person[1] > 0 && roomGrid[person[0]][person[1] - 1] == 1) {
                 roomGrid[person[0]][person[1] - 1] = 3;
                 infected++;
               }
